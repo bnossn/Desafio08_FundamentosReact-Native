@@ -38,8 +38,6 @@ interface Product {
 const Cart: React.FC = () => {
   const { increment, decrement, products } = useCart();
 
-  useEffect(() => console.log(products), [products]);
-
   function handleIncrement(id: string): void {
     increment(id);
   }
