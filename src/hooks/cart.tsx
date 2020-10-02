@@ -36,7 +36,7 @@ const CartProvider: React.FC = ({ children }) => {
       );
 
       if (productsList) {
-        setProducts(JSON.parse(productsList));
+        setProducts([...JSON.parse(productsList)]);
       }
     }
 
@@ -65,7 +65,7 @@ const CartProvider: React.FC = ({ children }) => {
       const newProductsList = products;
       newProductsList[productIndex].quantity += 1;
 
-      setProducts(newProductsList);
+      setProducts([...newProductsList]);
 
       updateAsyncStorage(newProductsList);
     },
@@ -85,9 +85,9 @@ const CartProvider: React.FC = ({ children }) => {
 
       if (newProductsList[productIndex].quantity <= 0) {
         newProductsList.splice(productIndex, 1);
-        setProducts(newProductsList);
+        setProducts([...newProductsList]);
       } else {
-        setProducts(newProductsList);
+        setProducts([...newProductsList]);
       }
 
       updateAsyncStorage(newProductsList);
@@ -102,9 +102,9 @@ const CartProvider: React.FC = ({ children }) => {
       if (productIndex < 0) {
         const newProduct: Product = product;
         newProduct.quantity = 1;
-        const newProductList = [...products, newProduct];
-        setProducts(newProductList);
-        updateAsyncStorage(newProductList);
+        const newProductsList = [...products, newProduct];
+        setProducts([...newProductsList]);
+        updateAsyncStorage(newProductsList);
       } else {
         await increment(product.id);
       }
